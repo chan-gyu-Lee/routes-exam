@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { SidebarRoutesProps, sidebarRoutes } from "../sidebarRoutes";
+import { SidebarRoutesProps, sidebarRoutes } from "../routes/sidebarRoutes";
 import styled from "styled-components";
 
 export default function Gnb() {

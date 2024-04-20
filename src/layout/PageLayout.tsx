@@ -4,7 +4,7 @@ import Gnb from "../components/Gnb";
 import styled from "styled-components";
 import SideBar from "../components/Sidebar";
 import BreadCrumb from "../components/BreadCrumb";
-import { pageRoutes } from "../routes";
+import { pageRoutes } from "../routes/routes";
 
 export default function PageLayout() {
   return (

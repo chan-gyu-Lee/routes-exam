@@ -1,13 +1,13 @@
-import FirstPage from "./pages/first/First";
-import Home from "./pages/Home";
-import SecondPage from "./pages/second/Second";
-import ThirdPage from "./pages/third/Third";
-import FirstA from "./pages/first/FirstA";
-import FirstB from "./pages/first/FirstB";
-import SecondA from "./pages/second/SecondA";
-import SecondB from "./pages/second/SecondB";
-import ThirdA from "./pages/third/ThirdA";
-import ThirdB from "./pages/third/ThirdB";
+import FirstPage from "../pages/first/First";
+import Home from "../pages/Home";
+import SecondPage from "../pages/second/Second";
+import ThirdPage from "../pages/third/Third";
+import FirstA from "../pages/first/FirstA";
+import FirstB from "../pages/first/FirstB";
+import SecondA from "../pages/second/SecondA";
+import SecondB from "../pages/second/SecondB";
+import ThirdA from "../pages/third/ThirdA";
+import ThirdB from "../pages/third/ThirdB";
 
 export interface SidebarRoutesProps {
   name: string;

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
-import { SidebarRoutesProps, sidebarRoutes } from "../sidebarRoutes";
+import { SidebarRoutesProps, sidebarRoutes } from "../routes/sidebarRoutes";
 
 export default function SideBar() {
   const location = useLocation();

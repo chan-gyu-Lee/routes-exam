@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { useEffect, useRef, useState } from "react";
-import { PageRoutesProps, pageRoutes } from "../routes";
+import { PageRoutesProps, pageRoutes } from "../routes/routes";
 
 interface HistoriesProps {
   name: string;
