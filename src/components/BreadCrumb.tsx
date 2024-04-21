@@ -1,8 +1,8 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Route, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { useEffect, useRef, useState } from "react";
-import { PageRoutesProps, pageRoutes } from "../routes/routes";
+import { SidebarRoutesProps, sidebarRoutes } from "../routes/routes";
 
 interface HistoriesProps {
   name: string;
@@ -16,6 +16,21 @@ export default function BreadCrumb() {
   console.log(prevPathname, location.pathname);
 
   const [histories, setHistories] = useState<HistoriesProps[]>([]);
+
+  const findPageByName: any = (routes: SidebarRoutesProps[], path: string) => {
+    // 배열을 순회하며 조건을 만족하는 첫 번째 요소를 반환 => find 쓰면 중첩구조에선 찾을 수 없음....
+    for (let route of routes) {
+      // 현재 라우트가 찾고자 하는 경로와 일치하는 경우
+      if (route.path === path) {
+        return route;
+      }
+      // 하위 라우트가 있는 경우 재귀적으로 탐색
+      if (route.item) {
+        const found: any = findPageByName(route.item, path);
+        if (found) return found;
+      }
+    }
+  };
 
   /*  
   useEffect 설명
@@ -34,10 +49,9 @@ export default function BreadCrumb() {
     4-2. prevPathname = A로 변경    
     */
   useEffect(() => {
-    const page = pageRoutes.find(
-      (route: PageRoutesProps) => route.path === location.pathname
-    );
-    // 전 페이지와 현재 페이지의 pathname을 비교해서 같지 않아야 브래드 크럼에 추가
+    const page = findPageByName(sidebarRoutes, location.pathname);
+    console.log({ page });
+
     if (prevPathname.current !== location.pathname && page) {
       // 현재 histories에 똑같은 path가 있는지 확인
       if (!histories.some((history) => history.path === location.pathname)) {

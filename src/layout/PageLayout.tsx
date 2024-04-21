@@ -4,9 +4,27 @@ import Gnb from "../components/Gnb";
 import styled from "styled-components";
 import SideBar from "../components/Sidebar";
 import BreadCrumb from "../components/BreadCrumb";
-import { pageRoutes } from "../routes/routes";
+
+import { SidebarRoutesProps, sidebarRoutes } from "../routes/routes";
 
 export default function PageLayout() {
+  const renderPage: any = (routes: SidebarRoutesProps[]) => {
+    return routes.map((route: SidebarRoutesProps) => {
+      if (route.item) {
+        return renderPage(route.item);
+      }
+      if (route.component) {
+        console.log(route.name);
+        return (
+          <Route
+            path={route.path}
+            element={<route.component />}
+            key={route.key}
+          />
+        );
+      }
+    });
+  };
   return (
     <PageLayoutWrapper>
       <Headers>
@@ -14,20 +32,9 @@ export default function PageLayout() {
       </Headers>
       <ContentsWrapper>
         <SideBar />
-
         <Contents>
           <BreadCrumb />
-          <Routes>
-            {pageRoutes.map((route) => (
-              <Route
-                key={route.name}
-                Component={route.component}
-                path={route.path}
-              >
-                {route.name}
-              </Route>
-            ))}
-          </Routes>
+          <Routes>{renderPage(sidebarRoutes)}</Routes>
         </Contents>
       </ContentsWrapper>
     </PageLayoutWrapper>

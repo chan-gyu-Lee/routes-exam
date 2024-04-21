@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { SidebarRoutesProps, sidebarRoutes } from "../routes/sidebarRoutes";
+import { SidebarRoutesProps, sidebarRoutes } from "../routes/routes";
 import styled from "styled-components";
 
 export default function Gnb() {
@@ -7,11 +7,23 @@ export default function Gnb() {
 
   return (
     <GnbWrapper>
-      {sidebarRoutes.map((route: SidebarRoutesProps) => (
-        <div className="a" key={route.name}>
-          <button onClick={() => navigate(route.path)}>{route.name}</button>
-        </div>
-      ))}
+      {sidebarRoutes.map((route: SidebarRoutesProps) => {
+        return (
+          <div className="a" key={route.name}>
+            <button
+              onClick={() =>
+                navigate(
+                  route.item
+                    ? (route.item[0].path as string)
+                    : (route.path as string)
+                )
+              }
+            >
+              {route.name}
+            </button>
+          </div>
+        );
+      })}
     </GnbWrapper>
   );
 }
